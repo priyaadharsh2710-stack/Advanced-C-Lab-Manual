@@ -15,11 +15,67 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void display()
+{
+    struct Node *p = head;
+
+    if (head == NULL)
+    {
+        printf("Stack is empty");
+    }
+    else
+    {
+        printf("Stack elements are:\n");
+
+        while (p != NULL)
+        {
+            printf("%d ", p->data);
+            p = p->next;
+        }
+    }
+}
+
+int main()
+{
+    struct Node *first;
+    struct Node *second;
+    struct Node *third;
+
+    first = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+
+    first->data = 30;
+    first->next = second;
+
+    second->data = 20;
+    second->next = third;
+
+    third->data = 10;
+    third->next = NULL;
+
+    head = first;
+
+    display();
+
+    return 0;
+}
+```
 
 Output:
-
-//paste your output here
+<img width="737" height="187" alt="image" src="https://github.com/user-attachments/assets/b6e12303-27c4-47b7-b50e-c4ae9fea437c" />
 
 
 Result:
@@ -40,11 +96,81 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void pop()
+{
+    struct Node *temp;
+
+    if (head == NULL)
+    {
+        printf("Stack is empty");
+    }
+    else
+    {
+        temp = head;
+        printf("%d popped from stack\n", head->data);
+        head = head->next;
+        free(temp);
+    }
+}
+
+void display()
+{
+    struct Node *p = head;
+
+    printf("Stack elements are:\n");
+
+    while (p != NULL)
+    {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+}
+
+int main()
+{
+    struct Node *first;
+    struct Node *second;
+    struct Node *third;
+
+    first = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+
+    first->data = 30;
+    first->next = second;
+
+    second->data = 20;
+    second->next = third;
+
+    third->data = 10;
+    third->next = NULL;
+
+    head = first;
+
+    pop();
+
+    display();
+
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="738" height="210" alt="image" src="https://github.com/user-attachments/assets/1a521a52-0867-4664-8d56-c922510e9d15" />
+
 
 
 
@@ -64,11 +190,70 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
 
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+void display()
+{
+    struct Node *p = front;
+
+    if (front == NULL)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("Queue elements are:\n");
+
+        while (p != NULL)
+        {
+            printf("%d ", p->data);
+            p = p->next;
+        }
+    }
+}
+
+int main()
+{
+    struct Node *first;
+    struct Node *second;
+    struct Node *third;
+
+    first = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+
+    first->data = 10;
+    first->next = second;
+
+    second->data = 20;
+    second->next = third;
+
+    third->data = 30;
+    third->next = NULL;
+
+    front = first;
+    rear = third;
+
+    display();
+
+    return 0;
+}
+```
 Output:
 
-//paste your output here
+<img width="737" height="246" alt="image" src="https://github.com/user-attachments/assets/8ea60c1a-d4a4-45d7-a116-98b00c94b062" />
+
 
 Result:
 Thus, the program to display queue elements using linked list is verified successfully.
@@ -89,12 +274,71 @@ Algorithm:
 6.	End of Enqueue Operation
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+void enqueue(int value)
+{
+    struct Node *p;
+
+    p = (struct Node *)malloc(sizeof(struct Node));
+
+    p->data = value;
+    p->next = NULL;
+
+    if (front == NULL)
+    {
+        front = p;
+        rear = p;
+    }
+    else
+    {
+        rear->next = p;
+        rear = p;
+    }
+
+    printf("%d inserted into queue\n", value);
+}
+
+void display()
+{
+    struct Node *temp = front;
+
+    printf("Queue elements are:\n");
+
+    while (temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+
+    display();
+
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="742" height="238" alt="image" src="https://github.com/user-attachments/assets/1a1d7a2b-901b-483e-bace-67b4f35ecab3" />
+
 
 Result:
 Thus, the program to insert elements in queue using linked list is verified successfully.
@@ -117,12 +361,61 @@ o	If the queue is not empty, return the data stored in the front node of the lin
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
 
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+void peek()
+{
+    if (front == NULL)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("Peek element is %d", front->data);
+    }
+}
+
+int main()
+{
+    struct Node *first;
+    struct Node *second;
+    struct Node *third;
+
+    first = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+
+    first->data = 10;
+    first->next = second;
+
+    second->data = 20;
+    second->next = third;
+
+    third->data = 30;
+    third->next = NULL;
+
+    front = first;
+    rear = third;
+
+    peek();
+
+    return 0;
+}
+```
 Output:
 
-//paste your output here
-
+<img width="736" height="158" alt="image" src="https://github.com/user-attachments/assets/3a230540-b798-4e71-838e-d4629c25f327" />
 
 
 Result:
